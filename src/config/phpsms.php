@@ -35,6 +35,26 @@ return [
     'agents' => [
         /*
          * -----------------------------------
+         * LingXian hu lian
+         * 领先互联短信
+         * -----------------------------------
+         * website:http://www.bjlxhl.com/
+         * support template sms.
+         */
+        'LingXian' => [
+            //发送短信地址
+            'sendUrl'    => 'http://101.200.29.88:8082/SendMT/SendMessage',
+            //领先互联账号
+            'userName'   => 'your_user_name',
+            //领先互联密码
+            'userPasswd' => 'your_user_password',
+            //短信签名
+            'smsCell'    => 'your_sms_free_sign_name',
+            //查询余额地址
+            'searchUrl'  => 'http://101.200.29.88:8082/SendMT/SearchStatus',
+        ],
+        /*
+         * -----------------------------------
          * YunPian
          * 云片代理器
          * -----------------------------------

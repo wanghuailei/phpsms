@@ -19,20 +19,21 @@ class YunTongXunAgent extends Agent implements TemplateSms, VoiceCode
 {
     public function sendTemplateSms($to, $tempId, array $data)
     {
-        $data = array_values($data);
+        $data   = array_values($data);
         $result = $this->rest()->sendTemplateSMS($to, $data, $tempId);
         $this->setResult($result);
     }
 
     public function sendVoiceCode($to, $code)
     {
-        $playTimes = intval($this->playTimes ?: 3);
-        $displayNum = $this->displayNum ?: null;
-        $lang = $this->params('lang') ?: 'zh';
-        $respUrl = $this->params('respUrl');
-        $userData = $this->params('userData');
+        $playTimes     = intval($this->playTimes ?: 3);
+        $displayNum    = $this->displayNum ?: null;
+        $lang          = $this->params('lang') ?: 'zh';
+        $respUrl       = $this->params('respUrl');
+        $userData      = $this->params('userData');
         $welcomePrompt = $this->params('welcomePrompt');
-        $result = $this->rest()->voiceVerify($code, $playTimes, $to, $displayNum, $respUrl, $lang, $userData, $welcomePrompt);
+        $result        =
+            $this->rest()->voiceVerify($code, $playTimes, $to, $displayNum, $respUrl, $lang, $userData, $welcomePrompt);
         $this->setResult($result);
     }
 
@@ -50,10 +51,10 @@ class YunTongXunAgent extends Agent implements TemplateSms, VoiceCode
         if (!$result) {
             return;
         }
-        $code = $info = (string) $result->statusCode;
+        $code    = $info = (string)$result->statusCode;
         $success = $code === '000000';
         if (isset($result->statusMsg)) {
-            $info = (string) $result->statusMsg;
+            $info = (string)$result->statusMsg;
         } elseif (isset($result->TemplateSMS)) {
             $info = 'smsSid:' . $result->TemplateSMS->smsMessageSid;
         } elseif (isset($result->VoiceVerify)) {
